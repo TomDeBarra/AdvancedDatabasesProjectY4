@@ -1,0 +1,57 @@
+:root { font-family: system-ui, sans-serif; color: #192f29; background: #f2f5f2; line-height: 1.5; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+header { background: #173e34; color: #fff; padding: 2.2rem max(1rem, calc((100% - 1120px) / 2)); }
+h1 { margin: .25rem 0; font-size: 2.3rem; letter-spacing: -.05em; }
+header p { margin: .4rem 0; color: #d4e8df; }
+.eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .12em; }
+main { max-width: 1152px; margin: 1.5rem auto; padding: 0 1rem; }
+section { background: white; border: 1px solid #d5dfd9; border-radius: 8px; padding: 1.3rem; margin-bottom: 1.2rem; min-width: 0; }
+h2 { font-size: 1.15rem; margin: 0 0 1rem; }
+h3 { font-size: 1.1rem; margin: 0; overflow-wrap: anywhere; }
+p { margin: .6rem 0; }
+.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.section-heading h2 { margin-bottom: 0; }
+.badge { border-radius: 20px; background: #e8f1ec; color: #29513e; padding: .2rem .7rem; font-size: .8rem; white-space: nowrap; }
+.badge[data-state="offline"], .badge[data-state="retrying"] { background: #fff0cc; color: #725200; }
+.badge[data-state="error"] { background: #ffe6e0; color: #9a2919; }
+form { display: grid; gap: .9rem; }
+#connection-form { grid-template-columns: 2fr 1fr 1fr auto auto; align-items: end; }
+label { display: grid; gap: .3rem; font-size: .88rem; font-weight: 600; }
+input, textarea, button { font: inherit; }
+input, textarea { width: 100%; min-width: 0; border: 1px solid #a9bdb2; border-radius: 5px; background: #fff; color: #192f29; padding: .6rem .7rem; }
+textarea { resize: vertical; }
+input:disabled { background: #f0f2f0; }
+button { cursor: pointer; background: #24624d; color: white; border: 1px solid #24624d; border-radius: 5px; padding: .6rem .85rem; font-weight: 600; white-space: nowrap; }
+button:hover { filter: brightness(.93); }
+button:disabled { cursor: wait; opacity: .55; }
+button.secondary { background: white; color: #29513e; border-color: #b2c6ba; }
+button.danger { background: white; color: #a12e22; border-color: #d9b2ab; }
+:focus-visible { outline: 3px solid #c5961c; outline-offset: 3px; }
+.offline-controls { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; margin-top: 1rem; font-size: .8rem; }
+.checkbox { display: flex; gap: .5rem; align-items: center; }
+.checkbox input { width: auto; }
+.workspace { display: grid; grid-template-columns: 330px 1fr; gap: 1.2rem; align-items: start; }
+.hint { color: #5c7167; font-size: .8rem; font-weight: 400; }
+.actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .7rem; }
+.movie { border-top: 1px solid #dfE7e1; padding: 1rem 0; }
+.movie:first-child { margin-top: 1rem; }
+.movie:last-child { padding-bottom: 0; }
+.movie p { font-size: .9rem; overflow-wrap: anywhere; }
+.movie code { font-size: .75rem; overflow-wrap: anywhere; }
+.conflict-tag { color: #9a4812; font-weight: 700; }
+details { margin-top: .65rem; font-size: .85rem; }
+summary { cursor: pointer; color: #295b46; }
+pre { font-size: .78rem; background: #f1f5f2; border-radius: 5px; padding: .85rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+#notice { border: 1px solid #b3cdba; background: #e7f3e9; padding: .8rem 1rem; border-radius: 5px; margin-bottom: 1rem; }
+#notice[data-error="true"] { background: #fff0eb; border-color: #e3bbae; color: #8e2e20; }
+#conflict-panel { border-color: #d0a24e; }
+#conflict-versions { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.version { border: 1px solid #d5dfd9; border-radius: 5px; padding: 1rem; min-width: 0; }
+#activity { padding-left: 1.4rem; font-size: .82rem; max-height: 240px; overflow: auto; }
+#activity li { padding: .25rem; overflow-wrap: anywhere; }
+time { color: #5c7167; font-variant-numeric: tabular-nums; margin-right: .6rem; }
+footer { max-width: 1152px; margin: 1rem auto 2rem; padding: 0 1rem; color: #5c7167; font-size: .8rem; }
+[hidden] { display: none !important; }
+@media (max-width: 900px) { #connection-form { grid-template-columns: 1fr 1fr; } .url-field { grid-column: 1 / -1; } }
+@media (max-width: 650px) { .workspace { grid-template-columns: 1fr; } header { padding: 1.5rem 1rem; } section { padding: 1rem; } }

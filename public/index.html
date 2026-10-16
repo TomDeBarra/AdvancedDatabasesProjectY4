@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e34">
+  <link rel="icon" href="data:,">
+  <title>Offline Movies</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/vendor/pouchdb.min.js" defer></script>
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">POUCHDB + COUCHDB · SCHEMA A</p>
+    <h1>Offline Movies</h1>
+    <p>A small movie collection. Save here, synchronise when connected.</p>
+  </header>
+  <main>
+    <section class="connection" aria-labelledby="connection-heading">
+      <div class="section-heading">
+        <h2 id="connection-heading">Replication</h2>
+        <span id="sync-state" class="badge">Starting…</span>
+      </div>
+      <p id="sync-detail" role="status">Opening the local database…</p>
+      <form id="connection-form">
+        <label class="url-field">CouchDB database URL
+          <input id="remote-url" type="url" value="http://localhost:5984/schema_a_movies" required>
+        </label>
+        <label>Username <input id="username" value="admin" autocomplete="username"></label>
+        <label>Password <input id="password" type="password" autocomplete="current-password"></label>
+        <button type="submit">Connect</button>
+        <button id="disconnect" type="button" class="secondary">Disconnect</button>
+      </form>
+      <div class="offline-controls">
+        <label class="checkbox"><input id="offline" type="checkbox"> Simulate offline</label>
+        <span id="offline-ready">Preparing offline page cache…</span>
+      </div>
+      <p class="hint">The toggle pauses replication. Turning it off reconnects automatically. Credentials are kept in memory for this page only.</p>
+    </section>
+
+    <p id="notice" role="status" hidden></p>
+    <div class="workspace">
+      <section aria-labelledby="form-heading">
+        <h2 id="form-heading">Add a movie</h2>
+        <form id="movie-form">
+          <label>Document ID <span class="hint">(optional; generated if blank)</span>
+            <input id="movie-id" placeholder="e.g. 1" maxlength="200">
+          </label>
+          <label>Title <input id="title" required maxlength="300"></label>
+          <label>Year <input id="year" type="number" min="1888" max="2200" step="1" required></label>
+          <label>Actors <textarea id="actors" rows="3" placeholder="Carrie Fisher, Harrison Ford"></textarea></label>
+          <label>Genres <input id="genres" placeholder="Adventure, Science fiction"></label>
+          <p class="hint">Separate actors and genres with commas.</p>
+          <div class="actions">
+            <button id="save-movie" type="submit">Save locally</button>
+            <button id="cancel-edit" type="button" class="secondary" hidden>Cancel edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section aria-labelledby="collection-heading">
+        <div class="section-heading"><h2 id="collection-heading">Local collection</h2><span id="movie-count" class="badge">0 movies</span></div>
+        <p class="hint">Reads and writes use this browser’s local database. Open a movie to inspect its JSON and revision.</p>
+        <label>Find a movie <input id="search" type="search" placeholder="Search by title or document ID"></label>
+        <div id="movies"><p>No movies yet. Add your first movie.</p></div>
+        <button id="show-more" class="secondary" type="button" hidden>Show 50 more</button>
+      </section>
+    </div>
+
+    <section id="conflict-panel" hidden aria-labelledby="conflict-heading">
+      <div class="section-heading"><h2 id="conflict-heading">Resolve conflicting updates</h2><button id="close-conflicts" class="secondary" type="button">Close</button></div>
+      <p>These revisions were edited independently. Choose the complete version to keep. The other live branches will be marked deleted and the resolution will replicate.</p>
+      <p class="hint">“Current winner” is selected by the database; it does not mean the most recent edit.</p>
+      <div id="conflict-versions"></div>
+    </section>
+
+    <section aria-labelledby="activity-heading">
+      <div class="section-heading"><h2 id="activity-heading">Activity</h2><button id="clear-log" class="secondary" type="button">Clear log</button></div>
+      <p class="hint">Recent local saves and replication events, for your demonstration. This log resets when you reload.</p>
+      <ol id="activity" aria-live="polite"></ol>
+    </section>
+  </main>
+  <footer>Offline-first database demonstration · See DEMONSTRATION.md for the five scenarios.</footer>
+</body>
+</html>
